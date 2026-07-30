@@ -4284,7 +4284,16 @@ function ScoringScreen({ gameState, onReset, onPause, onShowBets, onShowDistance
       );
     }
 
+function SplashScreen({ onStart }) {
+  const logoBase64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAMgCAYAAAA7Zj/5AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAgAElEQVR4nO3dP4/bSAKH8W+kvu4ygcO1MHIBzuXwV3gOiLgE/gmXuMQlLmHEBa4XOHEusFsA3oJbANoCSw3cBagNILXACdSFUUqmzSHl0VpksrxJL8k3Sf4eYIGV3iEmh/x+eL2Pk5OTkxMAgOtUKpUSQqhSqVQpFAo/Y7H1er1VvV5v1Wq1VqvVWt1uV3W7Xdblcil+v1+pVCoVh8OhOBwOxePxKHa7XSkUCkosFksuFAr/IhYLAJvp+eHhYZGAPSAIQqHQaDSq1Gq1Sr1eVx0OR1Hv/2q1+hVqtRoVi0WlWCySAEi7Xq/3T6PxgCAIhUIhxWg0Kk6ns6jNZlMDQaAoy7LkdDrfQyj8RCwWADbLq1ev3isVCoViKBQSRZFyOp2F7Ha7z2EymbTUarX6HR8fK41GQ7m7u1tczWbzL4DwM7FYANgc5+fnb8zLy8s/SUqFQkFRFOXVycnJf0aNjISJhZlsEWNzGI3Gd0RgFoTBYFDJZrNKNpul6BzqG7H37bQJZz+Sw3ALDY3FYnUajUbLYrEo/+PPBr4aP39KcaLVaj0xn8+VarVKEWhHmM1mxeFwvFJKpVLx+/2Kz+cjfWp+8J0bZcNrn/+4H5y9/ksOqFaL/IbK8+gBe1gQBGUyGRUIBIofvnxR/Pn5ubK8vKyc5wG3EASBhCBqVkq13W5XbDabkstlfNGF6qCGjSLOOOhvVMZUaF9v7K79+gTfVJGgTnBhQSqJ3m3hUO3J4aHy58+fvnYqg8GgvL29+Rfmm5fww2gDkSCE4OZwD7S+Q3H4jS++bvkVvvBrIGxgXjnZR0xLW3k8kH9nE8tQFYvVJFJ3scvYVXvWi7d7bpN0HJcI0UIRMfZ7e0tg8n7W3V3d3dqz9vf4O74R+wj5gWRIITg4OBgLx4Uy7W1PNvcxM6NNEzKkblHdv8GqcMkz2f4S3Rc8+Cv4W0T8Xd9iP2pQ3KzYEkP5zq0L1gUw0NDZWBkZFZ5Vb+7lZxAFzHzOm0ggNxhg4w6Bg3XfykW9XW5VVMW4KqMSc8ZxGJhvklFfHJvIRYeN3OGvhKmYxf0yEfD3vwXJL1GVL3mPnXPT1Z7rw6Lx5c0hVqfD9GfY9+Y3HLK3jbJq7gdXqFEsGpPMxU3gTm9lYJGDGOW/rPqmOxm5L/cHJlB5p7dpcXlSLfE+QFEWqIiT0mlYfiBHjTJeQZRMOhDg7Z3FQKsEZpX+j6gVLs7sVXlLsKWZW5hlk7YDGy6bSuY6xnqJbvUXxsoXhzqVoVb7HKkL8qUJvslvxQE1Zh9SYvfJqwKjfWVVkFT/Yrf+C1KbVAh9TOGfQWo3ggIvN1RqvkfTJ+B+cVxUzYSLlNZ5YtCJQGjVF/8R2hhCF4AAAAA';
+  
+  const containerStyle = {
+    width: '100%',
+    height: '100vh',
+
+
     function App() {
+ const [showSplash, setShowSplash] = useState(true);     
   const [gameState, setGameStateRaw] = useState(() => {
     try { return JSON.parse(localStorage.getItem('cc_game_live')) || null; } catch(e) { return null; }
   });
@@ -4355,6 +4364,7 @@ function ScoringScreen({ gameState, onReset, onPause, onShowBets, onShowDistance
     });
   };
 
+  if (showSplash) return <SplashScreen onStart={() => setShowSplash(false)} />;
   if (showBeers) return <BeersScreen onBack={() => setShowBeers(false)} />;
   if (showForfeit) return <ForfeitScreen onBack={() => setShowForfeit(false)} />;
   if (showGolfSchool) return <GolfSchoolScreen onBack={() => setShowGolfSchool(false)} />;
